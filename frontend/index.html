@@ -12,15 +12,26 @@
 
   <link rel="stylesheet" href="css/style.css" />
 
-  <style>
+     <style>
     .hero {
       position: relative;
-      padding: 100px 24px 80px;
+      min-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 80px 24px 60px;
       text-align: center;
-      background-image: linear-gradient(rgba(15, 17, 21, 0.75), rgba(15, 17, 21, 0.92)), url('assets/hero.jpg');
+      background-image: linear-gradient(rgba(15, 17, 21, 0.62), rgba(15, 17, 21, 0.85)), url('assets/hero.png');
       background-size: cover;
       background-position: center;
       border-bottom: 1px solid var(--border);
+    }
+    .hero-title {
+      text-shadow: 0 2px 16px rgba(0, 0, 0, 0.6);
+    }
+    .hero-subtitle {
+      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
     }
   </style>
 </head>
