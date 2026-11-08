@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sisonke — Borrow what you need. Lend what you don't.</title>
+  <meta name="description" content="Sisonke is a peer-to-peer tool lending platform for South African communities. Borrow what you need. Lend what you don't." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+
+  <style>
+    .hero {
+      position: relative;
+      padding: 100px 24px 80px;
+      text-align: center;
+      background-image: linear-gradient(rgba(15, 17, 21, 0.75), rgba(15, 17, 21, 0.92)), url('assets/hero.jpg');
+      background-size: cover;
+      background-position: center;
+      border-bottom: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">Sisonke</a>
+      <ul class="navbar-links">
+        <li><a href="browse.html">Browse Tools</a></li>
+        <li><a href="#how-it-works">How it works</a></li>
+        <li><a href="login.html">Log in</a></li>
+      </ul>
+      <div class="navbar-actions">
+        <a href="login.html" class="btn btn-ghost btn-sm">Log in</a>
+        <a href="register.html" class="btn btn-primary btn-sm">Sign up</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="container">
+      <h1 class="hero-title">Borrow what you need.<br />Lend what you don't.</h1>
+      <p class="hero-subtitle">
+        Sisonke connects neighbours so you can borrow rarely-used tools for a small deposit — no more buying a drill for one job, or a ladder for one afternoon.
+      </p>
+      <div class="hero-actions">
+        <a href="browse.html" class="btn btn-outline btn-lg">Browse Tools</a>
+        <a href="register.html" class="btn btn-secondary btn-lg">List Your Tool</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="how-it-works">
+    <div class="container">
+      <h2 class="section-title text-center">How it works</h2>
+      <p class="section-subtitle text-center">Three simple steps to start borrowing or lending tools in your neighbourhood.</p>
+
+      <div class="grid grid-3">
+        <div class="card card-flat text-center">
+          <i data-lucide="list-plus" style="width:36px;height:36px;color:var(--green);margin:0 auto 12px;"></i>
+          <h3>1. List your tools</h3>
+          <p class="mt-sm">Add the tools you already own. Set a small deposit fee and your suburb so neighbours can find them.</p>
+        </div>
+        <div class="card card-flat text-center">
+          <i data-lucide="search" style="width:36px;height:36px;color:var(--green);margin:0 auto 12px;"></i>
+          <h3>2. Find a tool nearby</h3>
+          <p class="mt-sm">Browse tools listed in your area. Filter by category, suburb, and price to find exactly what you need.</p>
+        </div>
+        <div class="card card-flat text-center">
+          <i data-lucide="handshake" style="width:36px;height:36px;color:var(--green);margin:0 auto 12px;"></i>
+          <h3>3. Request and borrow</h3>
+          <p class="mt-sm">Pick your dates and send a request. Once the owner approves, you arrange pickup and return the tool when done.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Featured tools</h2>
+      <p class="section-subtitle">Recently listed by neighbours around you.</p>
+
+      <div class="grid grid-3" id="featured-tools">
+        <div class="skeleton skeleton-card"></div>
+        <div class="skeleton skeleton-card"></div>
+        <div class="skeleton skeleton-card"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid grid-3 text-center">
+        <div>
+          <h2 style="color: var(--green); font-size: 2.5rem;">500+</h2>
+          <p class="text-muted">Tools shared</p>
+        </div>
+        <div>
+          <h2 style="color: var(--green); font-size: 2.5rem;">120+</h2>
+          <p class="text-muted">Active members</p>
+        </div>
+        <div>
+          <h2 style="color: var(--green); font-size: 2.5rem;">3</h2>
+          <p class="text-muted">Neighbourhoods</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="card text-center" style="padding: 40px 24px; border-color: var(--green);">
+        <h2>Got tools collecting dust?</h2>
+        <p class="mt-sm mb-lg">Turn them into shared community assets. Earn a small deposit and help your neighbours save money.</p>
+        <a href="register.html" class="btn btn-primary btn-lg">List Your Tool</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>© 2026 Sisonke. Made in South Africa, for South Africa.</p>
+  </footer>
+
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script type="module" src="js/pages/home.js"></script>
+</body>
+</html>

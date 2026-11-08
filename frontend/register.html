@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign up — Sisonke</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">Sisonke</a>
+      <ul class="navbar-links">
+        <li><a href="browse.html">Browse Tools</a></li>
+        <li><a href="index.html#how-it-works">How it works</a></li>
+      </ul>
+      <div class="navbar-actions">
+        <a href="login.html" class="btn btn-ghost btn-sm">Log in</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="section">
+    <div class="container" style="max-width: 460px;">
+      <div class="card card-flat">
+        <h1 class="text-center">Join Sisonke</h1>
+        <p class="text-center text-muted mt-sm mb-lg">Borrow what you need. Lend what you don't.</p>
+
+        <form id="register-form">
+          <div class="form-group">
+            <label class="form-label" for="name">Full name</label>
+            <input class="form-input" type="text" id="name" name="name" required autocomplete="name" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="email">Email</label>
+            <input class="form-input" type="email" id="email" name="email" required autocomplete="email" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="idNumber">South African ID Number</label>
+            <input class="form-input" type="text" id="idNumber" name="idNumber" required maxlength="13" placeholder="13 digits" autocomplete="off" />
+            <span class="form-hint" id="id-feedback"></span>
+            <input type="hidden" id="gender" name="gender" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="suburb">Suburb</label>
+            <input class="form-input" type="text" id="suburb" name="suburb" required placeholder="e.g. Midrand" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="password">Password</label>
+            <div style="position: relative;">
+              <input class="form-input" type="password" id="password" name="password" required minlength="8" autocomplete="new-password" style="padding-right: 48px;" />
+              <button type="button" id="toggle-password" aria-label="Show password" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--text-muted); padding: 4px;">
+                <i data-lucide="eye" style="width:18px;height:18px;"></i>
+              </button>
+            </div>
+            <span class="form-hint">At least 8 characters.</span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="confirmPassword">Confirm password</label>
+            <div style="position: relative;">
+              <input class="form-input" type="password" id="confirmPassword" name="confirmPassword" required autocomplete="new-password" style="padding-right: 48px;" />
+              <button type="button" id="toggle-confirm" aria-label="Show password" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--text-muted); padding: 4px;">
+                <i data-lucide="eye" style="width:18px;height:18px;"></i>
+              </button>
+            </div>
+            <span class="form-hint" id="password-match"></span>
+          </div>
+
+          <div class="form-group">
+            <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
+              <input type="checkbox" id="terms" required style="margin-top: 4px;" />
+              <span class="text-muted" style="font-size: 0.9rem;">
+                I agree to the <a href="guidelines.html" target="_blank" style="color: var(--green);">community guidelines</a>.
+              </span>
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 8px;">
+            Create account
+          </button>
+
+          <p class="text-center text-muted mt-md">
+            Already have an account? <a href="login.html">Log in</a>
+          </p>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 Sisonke. Made in South Africa, for South Africa.</p>
+  </footer>
+
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script type="module">
+    import { validateSAID } from './js/idValidator.js';
+
+    lucide.createIcons();
+
+    const idInput = document.getElementById('idNumber');
+    const idFeedback = document.getElementById('id-feedback');
+    const genderInput = document.getElementById('gender');
+
+    idInput.addEventListener('input', (e) => {
+      const value = e.target.value.trim();
+      
+      if (value.length === 0) {
+        idFeedback.textContent = '';
+        idFeedback.style.color = 'var(--text-faint)';
+        genderInput.value = '';
+        return;
+      }
+
+      if (value.length < 13) {
+        idFeedback.textContent = 'ID must contain exactly 13 digits.';
+        idFeedback.style.color = 'var(--warning)';
+        genderInput.value = '';
+        return;
+      }
+
+      const result = validateSAID(value);
+      if (result.valid) {
+        idFeedback.textContent = `Valid ID (${result.gender})`;
+        idFeedback.style.color = 'var(--success)';
+        genderInput.value = result.gender;
+      } else {
+        idFeedback.textContent = result.error;
+        idFeedback.style.color = 'var(--danger)';
+        genderInput.value = '';
+      }
+    });
+
+    const passwordInput = document.getElementById('password');
+    const confirmInput = document.getElementById('confirmPassword');
+    const matchFeedback = document.getElementById('password-match');
+
+    function checkPasswordMatch() {
+      const pwd = passwordInput.value;
+      const confirm = confirmInput.value;
+
+      if (confirm.length === 0) {
+        matchFeedback.textContent = '';
+        matchFeedback.style.color = 'var(--text-faint)';
+        return;
+      }
+
+      if (pwd === confirm) {
+        matchFeedback.textContent = 'Passwords match';
+        matchFeedback.style.color = 'var(--success)';
+      } else {
+        matchFeedback.textContent = 'Passwords do not match';
+        matchFeedback.style.color = 'var(--danger)';
+      }
+    }
+
+    passwordInput.addEventListener('input', checkPasswordMatch);
+    confirmInput.addEventListener('input', checkPasswordMatch);
+
+    const togglePassword = document.getElementById('toggle-password');
+    const toggleConfirm = document.getElementById('toggle-confirm');
+
+    togglePassword.addEventListener('click', () => {
+      const isPassword = passwordInput.type === 'password';
+      passwordInput.type = isPassword ? 'text' : 'password';
+      togglePassword.innerHTML = `<i data-lucide="${isPassword ? 'eye-off' : 'eye'}" style="width:18px;height:18px;"></i>`;
+      lucide.createIcons();
+    });
+
+    toggleConfirm.addEventListener('click', () => {
+      const isPassword = confirmInput.type === 'password';
+      confirmInput.type = isPassword ? 'text' : 'password';
+      toggleConfirm.innerHTML = `<i data-lucide="${isPassword ? 'eye-off' : 'eye'}" style="width:18px;height:18px;"></i>`;
+      lucide.createIcons();
+    });
+  </script>
+</body>
+</html>

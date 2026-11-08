@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — Sisonke</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+
+  <style>
+    .dashboard-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .dashboard-header h1 {
+      font-size: 1.8rem;
+    }
+    .tab-switcher {
+      display: flex;
+      gap: 4px;
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 4px;
+      margin-bottom: 24px;
+    }
+    .tab-btn {
+      flex: 1;
+      padding: 10px 16px;
+      background: transparent;
+      border: none;
+      border-radius: var(--radius-sm);
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+    .tab-btn:hover {
+      color: var(--text);
+    }
+    .tab-btn.active {
+      background-color: var(--green);
+      color: white;
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    .add-tool-card {
+      border: 2px dashed var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      aspect-ratio: 4 / 3;
+      text-decoration: none;
+    }
+    .add-tool-card:hover {
+      border-color: var(--green);
+      color: var(--green);
+      background-color: var(--green-soft);
+    }
+    .my-tool-card {
+      position: relative;
+    }
+    .my-tool-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .my-tool-actions .btn {
+      flex: 1;
+      padding: 6px 12px;
+      font-size: 0.8rem;
+    }
+    .booking-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+    .booking-thumb {
+      width: 60px;
+      height: 60px;
+      border-radius: var(--radius-sm);
+      background-color: var(--surface-hi);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-faint);
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .booking-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .booking-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .booking-info strong {
+      display: block;
+      color: var(--text);
+      font-size: 0.95rem;
+      margin-bottom: 2px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .booking-info span {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+    .booking-actions {
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    @media (max-width: 640px) {
+      .tab-btn {
+        font-size: 0.8rem;
+        padding: 8px 8px;
+      }
+      .booking-row {
+        flex-wrap: wrap;
+      }
+      .booking-actions {
+        width: 100%;
+        justify-content: flex-end;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">Sisonke</a>
+      <ul class="navbar-links">
+        <li><a href="browse.html">Browse Tools</a></li>
+        <li><a href="index.html#how-it-works">How it works</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+      </ul>
+      <div class="navbar-actions">
+        <a href="index.html" class="btn btn-ghost btn-sm">Log out</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="section">
+    <div class="container">
+      <div class="dashboard-header">
+        <h1>Dashboard</h1>
+        <a href="tool-form.html" class="btn btn-primary btn-sm">
+          <i data-lucide="plus" style="width:16px;height:16px;"></i>
+          List a tool
+        </a>
+      </div>
+
+      <div class="tab-switcher">
+        <button class="tab-btn active" data-tab="my-tools">My Tools</button>
+        <button class="tab-btn" data-tab="my-bookings">My Bookings</button>
+        <button class="tab-btn" data-tab="incoming-requests">Incoming Requests</button>
+      </div>
+
+      <div class="tab-content active" id="tab-my-tools">
+        <div class="grid grid-3" id="my-tools-grid">
+          <div class="skeleton skeleton-card"></div>
+          <div class="skeleton skeleton-card"></div>
+          <div class="skeleton skeleton-card"></div>
+        </div>
+      </div>
+
+      <div class="tab-content" id="tab-my-bookings">
+        <div id="my-bookings-list">
+          <div class="skeleton" style="height:90px;margin-bottom:12px;"></div>
+          <div class="skeleton" style="height:90px;margin-bottom:12px;"></div>
+        </div>
+      </div>
+
+      <div class="tab-content" id="tab-incoming-requests">
+        <div id="incoming-requests-list">
+          <div class="skeleton" style="height:90px;margin-bottom:12px;"></div>
+          <div class="skeleton" style="height:90px;margin-bottom:12px;"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 Sisonke. Made in South Africa, for South Africa.</p>
+  </footer>
+
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script type="module" src="js/pages/dashboard.js"></script>
+</body>
+</html>

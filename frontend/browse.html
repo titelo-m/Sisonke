@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Browse Tools — Sisonke</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+
+  <style>
+    .browse-layout {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+    .filter-sidebar {
+      position: sticky;
+      top: 92px;
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+    }
+    .filter-group {
+      margin-bottom: 20px;
+    }
+    .filter-group:last-child {
+      margin-bottom: 0;
+    }
+    .filter-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-faint);
+      margin-bottom: 10px;
+    }
+    .filter-options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .filter-option {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+    .filter-option input[type="checkbox"] {
+      accent-color: var(--green);
+      cursor: pointer;
+    }
+    .search-bar {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .search-bar .form-input {
+      flex: 1;
+    }
+    .browse-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .browse-header h1 {
+      font-size: 1.8rem;
+    }
+    .results-count {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    @media (max-width: 900px) {
+      .browse-layout {
+        grid-template-columns: 1fr;
+      }
+      .filter-sidebar {
+        position: static;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">Sisonke</a>
+      <ul class="navbar-links">
+        <li><a href="browse.html">Browse Tools</a></li>
+        <li><a href="index.html#how-it-works">How it works</a></li>
+        <li><a href="login.html">Log in</a></li>
+      </ul>
+      <div class="navbar-actions">
+        <a href="login.html" class="btn btn-ghost btn-sm">Log in</a>
+        <a href="register.html" class="btn btn-primary btn-sm">Sign up</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="section">
+    <div class="container">
+      <div class="browse-header">
+        <h1>Browse Tools</h1>
+        <span class="results-count" id="results-count">Loading...</span>
+      </div>
+
+      <div class="search-bar">
+        <input
+          class="form-input"
+          type="text"
+          id="search-input"
+          placeholder="Search for a drill, ladder, lawnmower..."
+        />
+      </div>
+
+      <div class="browse-layout">
+        <aside class="filter-sidebar">
+          <div class="filter-group">
+            <div class="filter-title">Category</div>
+            <div class="filter-options" id="category-filters">
+              <label class="filter-option">
+                <input type="checkbox" value="Power Tools" />
+                <span>Power Tools</span>
+              </label>
+              <label class="filter-option">
+                <input type="checkbox" value="Garden" />
+                <span>Garden</span>
+              </label>
+              <label class="filter-option">
+                <input type="checkbox" value="Ladders & Lifting" />
+                <span>Ladders & Lifting</span>
+              </label>
+              <label class="filter-option">
+                <input type="checkbox" value="Cleaning" />
+                <span>Cleaning</span>
+              </label>
+              <label class="filter-option">
+                <input type="checkbox" value="Hand Tools" />
+                <span>Hand Tools</span>
+              </label>
+              <label class="filter-option">
+                <input type="checkbox" value="Other" />
+                <span>Other</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <div class="filter-title">Suburb</div>
+            <select class="form-select" id="suburb-filter">
+              <option value="">All suburbs</option>
+              <option value="Katlehong">Katlehong</option>
+              <option value="Thokoza">Thokoza</option>
+              <option value="Vosloorus">Vosloorus</option>
+              <option value="Alberton">Alberton</option>
+              <option value="Germiston">Germiston</option>
+              <option value="Boksburg">Boksburg</option>
+              <option value="Springs">Springs</option>
+              <option value="Benoni">Benoni</option>
+              <option value="Brakpan">Brakpan</option>
+              <option value="Heidelberg">Heidelberg</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <div class="filter-title">Max deposit fee</div>
+            <input
+              class="form-input"
+              type="number"
+              id="deposit-filter"
+              placeholder="e.g. 100"
+              min="0"
+            />
+          </div>
+
+          <div class="filter-group">
+            <label class="filter-option">
+              <input type="checkbox" id="available-filter" />
+              <span>Available now only</span>
+            </label>
+          </div>
+        </aside>
+
+        <div>
+          <div class="grid grid-3" id="tool-grid">
+            <div class="skeleton skeleton-card"></div>
+            <div class="skeleton skeleton-card"></div>
+            <div class="skeleton skeleton-card"></div>
+            <div class="skeleton skeleton-card"></div>
+            <div class="skeleton skeleton-card"></div>
+            <div class="skeleton skeleton-card"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 Sisonke. Made in South Africa, for South Africa.</p>
+  </footer>
+
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script type="module" src="js/pages/browse.js"></script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tool Details — Sisonke</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+
+  <style>
+    .tool-detail {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+      margin-top: 24px;
+    }
+    .tool-image {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      background-color: var(--surface-hi);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-faint);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .tool-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .tool-info h1 {
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+    .owner-block {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 16px 0;
+      padding: 12px;
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+    .owner-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background-color: var(--green-soft);
+      color: var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+    .owner-info {
+      flex: 1;
+    }
+    .owner-info strong {
+      display: block;
+      color: var(--text);
+      font-size: 0.95rem;
+    }
+    .owner-info span {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+    .deposit-block {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px;
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 16px;
+    }
+    .deposit-block .label {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    .deposit-block .value {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--amber);
+    }
+    .booking-form {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-top: 16px;
+    }
+    .booking-form h3 {
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+    }
+    .booking-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .related-section {
+      margin-top: 48px;
+    }
+    .related-section h2 {
+      font-size: 1.4rem;
+      margin-bottom: 16px;
+    }
+    @media (max-width: 900px) {
+      .tool-detail {
+        grid-template-columns: 1fr;
+      }
+      .booking-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">Sisonke</a>
+      <ul class="navbar-links">
+        <li><a href="browse.html">Browse Tools</a></li>
+        <li><a href="index.html#how-it-works">How it works</a></li>
+        <li><a href="login.html">Log in</a></li>
+      </ul>
+      <div class="navbar-actions">
+        <a href="login.html" class="btn btn-ghost btn-sm">Log in</a>
+        <a href="register.html" class="btn btn-primary btn-sm">Sign up</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="section">
+    <div class="container">
+      <a href="browse.html" style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.9rem; margin-bottom: 16px;">
+        <i data-lucide="arrow-left" style="width:16px;height:16px;"></i>
+        Back to browse
+      </a>
+
+      <div id="tool-container">
+        <div class="skeleton" style="height: 400px;"></div>
+      </div>
+
+      <div class="related-section hidden" id="related-section">
+        <h2>More tools nearby</h2>
+        <div class="grid grid-3" id="related-tools"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 Sisonke. Made in South Africa, for South Africa.</p>
+  </footer>
+
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script type="module" src="js/pages/tool.js"></script>
+</body>
+</html>
