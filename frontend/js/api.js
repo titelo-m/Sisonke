@@ -77,7 +77,7 @@ export async function mockTools() {
           suburb: 'Katlehong',
           depositFee: 5000,
           available: true,
-          imageUrl: '',
+          imageUrl: 'assets/BoschCordlessDrill.png',
         },
         {
           id: 2,
@@ -86,7 +86,7 @@ export async function mockTools() {
           suburb: 'Thokoza',
           depositFee: 3000,
           available: true,
-          imageUrl: '',
+          imageUrl: 'assets/AluminiumExtensionLadder.png',
         },
         {
           id: 3,
@@ -95,7 +95,7 @@ export async function mockTools() {
           suburb: 'Vosloorus',
           depositFee: 7500,
           available: false,
-          imageUrl: '',
+          imageUrl: 'assets/PetrolLawnMower.png',
         },
         {
           id: 4,
@@ -104,7 +104,7 @@ export async function mockTools() {
           suburb: 'Alberton',
           depositFee: 6000,
           available: true,
-          imageUrl: '',
+          imageUrl: 'assets/PressureWasher.png',
         },
         {
           id: 5,
@@ -113,7 +113,7 @@ export async function mockTools() {
           suburb: 'Germiston',
           depositFee: 4000,
           available: true,
-          imageUrl: '',
+          imageUrl: 'assets/AngleGrinder.png',
         },
         {
           id: 6,
@@ -122,7 +122,7 @@ export async function mockTools() {
           suburb: 'Katlehong',
           depositFee: 1500,
           available: true,
-          imageUrl: '',
+          imageUrl: 'assets/GardenSpadeSet.png',
         },
       ]);
     }, 400);

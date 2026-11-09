@@ -24,7 +24,7 @@ const mockMyBookings = () => [
     startDate: '2026-11-10',
     endDate: '2026-11-12',
     status: 'APPROVED',
-    imageUrl: '',
+    imageUrl: 'assets/AluminiumExtensionLadder.png',
   },
   {
     id: 2,
@@ -33,7 +33,7 @@ const mockMyBookings = () => [
     startDate: '2026-11-20',
     endDate: '2026-11-21',
     status: 'PENDING',
-    imageUrl: '',
+    imageUrl: 'assets/PressureWasher.png',
   },
 ];
 
@@ -45,7 +45,7 @@ const mockIncomingRequests = () => [
     startDate: '2026-11-15',
     endDate: '2026-11-16',
     status: 'PENDING',
-    imageUrl: '',
+    imageUrl: 'assets/BoschCordlessDrill.png',
   },
 ];
 
